@@ -1,7 +1,9 @@
-import React from "react";
-
 const PostListPage = () => {
-  return <div>PostListPage</div>;
+  return (
+    <div className="">
+      <h1 className="mb-8 text-2xl">Development Blog</h1>
+    </div>
+  );
 };
 
 export default PostListPage;
