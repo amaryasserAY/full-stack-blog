@@ -1,4 +1,4 @@
-const PostMenuAction = () => {
+const PostMenuAction = ({ post }) => {
   return (
     <div>
       <h1 className="mt-8 mb-4 text-sm font-medium">Actions</h1>

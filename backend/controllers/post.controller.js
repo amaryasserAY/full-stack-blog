@@ -6,13 +6,24 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const getPosts = async (req, res) => {
-  const posts = await Post.find();
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 2;
 
-  res.status(200).json(posts);
+  const posts = await Post.find()
+    .populate("user", "username")
+    .limit(limit)
+    .skip((page - 1) * limit);
+  const totalPosts = await Post.countDocuments();
+  const hasMore = page * limit < totalPosts;
+
+  res.status(200).json({ posts, hasMore });
 };
 
 export const getPost = async (req, res) => {
-  const post = await Post.findOne({ slug: req.params.slug });
+  const post = await Post.findOne({ slug: req.params.slug }).populate(
+    "user",
+    "username img"
+  );
 
   res.status(200).json(post);
 };

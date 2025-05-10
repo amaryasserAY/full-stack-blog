@@ -54,7 +54,7 @@ const Write = () => {
     const formDate = new FormData(e.target);
 
     const data = {
-      img: cover.path || "",
+      img: cover.filePath || "",
       title: formDate.get("title"),
       category: formDate.get("category"),
       desc: formDate.get("desc"),
